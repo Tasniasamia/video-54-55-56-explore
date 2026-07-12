@@ -6,7 +6,7 @@ import (
 	"mains/database"
 	"net/http"
 	"log"
-	//"mains/config"
+	"mains/config"
 );
 
 
@@ -17,7 +17,7 @@ type loginUser struct{
 }
 func Login(w http.ResponseWriter, r *http.Request){
 
-	//cnf :=config.GetConfig();
+	cnf :=config.GetConfig();
 
 	var newUser database.AuthUser;
 	err := json.NewDecoder(r.Body).Decode(&newUser)
@@ -31,8 +31,7 @@ func Login(w http.ResponseWriter, r *http.Request){
 		return
 	}
 	log.Println(findUser);
-	token:="324234234324"
-	// token :=util.CreateJwtToken(cnf.JWT_SECRET, util.Payload{Sub: "1", Name: "tia", Email: "tia@example.com"});
+	token :=util.CreateJwtToken(cnf.JwtSecret, util.Payload{Sub: findUser.Id, Name: findUser.Name, Email: findUser.Email});
 	log.Println(token);
 	util.SendResponse(w, map[string]interface{}{"user": findUser, "token": token}, http.StatusOK)
 
