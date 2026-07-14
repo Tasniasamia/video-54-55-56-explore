@@ -5,17 +5,19 @@ import (
 	"mains/rest/handlers/product"
 	"mains/rest/handlers/user"
 	"mains/rest"
+	"mains/rest/middlewares"
 )
 
 func Serve() {
 
 	cnf := config.GetConfig()
 
-    //call All handler Function
-	product :=product.NewHandler();
-	user :=user.NewHandler();
+	middlewares := middleware.NewMiddleware(cnf);
+	
+	product :=product.NewHandler(middlewares);
+	user :=user.NewHandler(middlewares);
 
-  // New Server call
-   createServer :=rest.NewServer(cnf,product,user);
+  // server
+   createServer :=rest.NewServer(cnf,product,user,middlewares);
    createServer.Start();
 }

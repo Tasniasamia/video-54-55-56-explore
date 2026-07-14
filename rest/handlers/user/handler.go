@@ -1,11 +1,11 @@
-package user;
-type Handler struct{
+package user
 
+import  "mains/rest/middlewares"
+
+type Handler struct {
+	middleware *middleware.Middlewares;
 }
 
-func NewHandler()*Handler{
-	return &Handler{
-
-	}
+func NewHandler(m *middleware.Middlewares) *Handler {
+	return &Handler{middleware: m}
 }
-

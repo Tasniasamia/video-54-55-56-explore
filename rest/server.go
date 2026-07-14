@@ -14,13 +14,15 @@ type Server struct{
 	cnf     config.Config
 	product *product.Handler;
     user *user.Handler;
+	middlewares *middleware.Middlewares;
 }
 
-func NewServer(cnf config.Config,product *product.Handler,user *user.Handler)*Server{
+func NewServer(cnf config.Config,product *product.Handler,user *user.Handler,middlewares *middleware.Middlewares)*Server{
 	return &Server{
 		cnf:cnf,
 		product:product,
 		user:user,
+		middlewares:middlewares,
 	}
 }
 
@@ -31,9 +33,9 @@ func (server *Server) Start() {
    mux := http.NewServeMux()
 	
    managerStruct:=middleware.NewManager();
-   managerStruct.Use(middleware.Logger,middleware.Hudai,middleware.CorsPreflight);
+   managerStruct.Use(server.middlewares.Logger,server.middlewares.Hudai,server.middlewares.CorsPreflight);
 
-
+//routes
 server.product.ResisterRoutes(mux, managerStruct);
 server.user.ResisterRoutes(mux, managerStruct);
 

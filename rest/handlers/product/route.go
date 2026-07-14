@@ -11,11 +11,11 @@ func (h *Handler)ResisterRoutes(mux *http.ServeMux, manager *middleware.Manager)
 	// mux.HandleFunc("GET /product/{id}", (http.HandlerFunc(handler.GetSingleProduct)).ServeHTTP)
 
 	
-	mux.Handle("GET /",manager.With(http.HandlerFunc(h.GetProducts)));
-	mux.Handle("POST /products", manager.With(http.HandlerFunc(h.CreateProduct)));
-	mux.Handle("GET /products/{id}", manager.With(http.HandlerFunc(h.GetSingleProduct)));
-	mux.Handle("PUT /products/{id}", manager.With(http.HandlerFunc(h.UpdateProduct)));
-	mux.Handle("DELETE /products/{id}", manager.With(http.HandlerFunc(h.DeleteProduct)));
+	mux.Handle("GET /",manager.With(http.HandlerFunc(h.GetProducts),h.middleware.Logger,h.middleware.Hudai));
+	mux.Handle("POST /products", manager.With(http.HandlerFunc(h.CreateProduct),h.middleware.Logger,h.middleware.Hudai));
+	mux.Handle("GET /products/{id}", manager.With(http.HandlerFunc(h.GetSingleProduct),h.middleware.Logger,h.middleware.Hudai));
+	mux.Handle("PUT /products/{id}", manager.With(http.HandlerFunc(h.UpdateProduct),h.middleware.Logger,h.middleware.Hudai));
+	mux.Handle("DELETE /products/{id}", manager.With(http.HandlerFunc(h.DeleteProduct),h.middleware.Logger,h.middleware.Hudai));
 	
 	
 }

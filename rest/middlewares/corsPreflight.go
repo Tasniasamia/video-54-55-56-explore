@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func CorsPreflight(mux http.Handler) http.Handler {
+func (m *Middlewares) CorsPreflight(mux http.Handler) http.Handler {
 	handler := func(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*");
     w.Header().Set("Access-Control-Allow-Headers", "Content-Type");

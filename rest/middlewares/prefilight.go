@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func Preflight(mux http.Handler) http.Handler {
+func (m *Middlewares) Preflight(mux http.Handler) http.Handler {
 	handler := func(w http.ResponseWriter, r *http.Request) {
 	
 		if r.Method == http.MethodOptions {

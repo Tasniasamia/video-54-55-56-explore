@@ -4,7 +4,7 @@ import (
 	"net/http"
 );
 
-func Hudai(next http.Handler) http.Handler {
+func (m *Middlewares) Hudai(next http.Handler) http.Handler {
 	handler:= http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	   log.Println("Ami holam Hudai");
 	   next.ServeHTTP(w, r)

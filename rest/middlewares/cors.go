@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func Cors(mux http.Handler) http.Handler {
+func (m *Middlewares) Cors(mux http.Handler) http.Handler {
 	handler := func(w http.ResponseWriter, r *http.Request) {
 	log.Println("Method is ",r.Method);
 	//handle cors error

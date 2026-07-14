@@ -8,7 +8,7 @@ import (
 	"mains/util"
 )
 
-func AuthMiddleware(mux http.Handler) http.Handler {
+func (m *Middlewares) AuthMiddleware(mux http.Handler) http.Handler {
 	handler := func(w http.ResponseWriter, r *http.Request) {
      
      header :=r.Header.Get("Authorization");
@@ -38,7 +38,7 @@ func AuthMiddleware(mux http.Handler) http.Handler {
 
 	 byMessase :=jwtHeader+"."+jwtPayload;
 	 
-	generateHashSignature := util.ConvertHMAC_SHA256([]byte(byMessase), []byte("your_secret_key"));
+	generateHashSignature := util.ConvertHMAC_SHA256([]byte(byMessase), []byte(m.cnf.JwtSecret));
 	generateBase64HashSignature :=util.ConvertBase64(generateHashSignature);
 
 	if(generateBase64HashSignature != jwtSignature) {
