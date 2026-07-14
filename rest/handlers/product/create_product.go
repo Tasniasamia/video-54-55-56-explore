@@ -9,7 +9,7 @@ import (
 )
 
 
-func  CreateProduct(w http.ResponseWriter, r *http.Request) {
+func(h *Handler)CreateProduct(w http.ResponseWriter, r *http.Request) {
    
 	var newUser database.User;
 	err := json.NewDecoder(r.Body).Decode(&newUser)

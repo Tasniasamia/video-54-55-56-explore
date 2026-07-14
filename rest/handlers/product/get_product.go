@@ -8,7 +8,7 @@ import (
 )
 
 
-func  GetProducts(w http.ResponseWriter, r *http.Request) {
+func(h *Handler)GetProducts(w http.ResponseWriter, r *http.Request) {
 
 	users:=database.List();
 	util.SendResponse(w, users, http.StatusOK)

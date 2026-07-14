@@ -22,7 +22,7 @@ export async function getProducts(): Promise<User[]> {
 export async function createProduct(
   payload: Omit<User, "id">
 ): Promise<User> {
-  const res = await fetch(`${API_BASE}/product`, {
+  const res = await fetch(`${API_BASE}/products`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),

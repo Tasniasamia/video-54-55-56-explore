@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 )
-func CreateUser(w http.ResponseWriter, r *http.Request){
+func (h *Handler)CreateUser(w http.ResponseWriter, r *http.Request){
 
 	var newUser database.AuthUser;
 	err := json.NewDecoder(r.Body).Decode(&newUser)

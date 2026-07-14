@@ -7,7 +7,7 @@ import (
 	
 
 )
-func  GetSingleProduct(w http.ResponseWriter, r *http.Request) {
+func(h *Handler)GetSingleProduct(w http.ResponseWriter, r *http.Request) {
 
 	productId :=r.PathValue("id");
 	productIdInt, err := strconv.Atoi(productId)

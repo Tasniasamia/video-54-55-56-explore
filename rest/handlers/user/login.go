@@ -15,7 +15,7 @@ type loginUser struct{
 	Email string `json:"email"`;
 	Password string `json:"password"`;
 }
-func Login(w http.ResponseWriter, r *http.Request){
+func(h *Handler)Login(w http.ResponseWriter, r *http.Request){
 
 	cnf :=config.GetConfig();
 
