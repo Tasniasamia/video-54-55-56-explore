@@ -12,7 +12,3 @@ cmd.Serve();
 
 }
 
-func init() {
-
-
-}
