@@ -1,7 +1,6 @@
 package product;
 import (
 	"mains/util"
-	"mains/database"
 	"net/http"
 	"strconv"
 	
@@ -22,7 +21,7 @@ func(h *Handler)GetSingleProduct(w http.ResponseWriter, r *http.Request) {
 	}
 	
 
-	getUserById := database.Find(productIdInt);
+	getUserById := h.productRepo.Find(productIdInt);
 	if(getUserById.Id == productIdInt) {
 		util.SendResponse(w, getUserById, http.StatusOK)
 		return

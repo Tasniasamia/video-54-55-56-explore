@@ -1,9 +1,6 @@
 package main
 
-import (
-"mains/cmd"
-
-)
+import "mains/cmd"
 
 
 func main() {

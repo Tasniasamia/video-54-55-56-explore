@@ -62,7 +62,7 @@ func (r *productRepo)Update(id int, updatedUser *Product) *Product {
 	return &Product{} // Return zero value if not found
 }
 
-func (r *productRepo)Delete(id int) {
+func (r *productRepo)Delete(id int){
 	var temp [] *Product;
 	for _, user := range r.productList{
 		if user.Id != id {
@@ -72,6 +72,8 @@ func (r *productRepo)Delete(id int) {
 		}
 	}
 	r.productList = temp;
+	
+
 }
 
 

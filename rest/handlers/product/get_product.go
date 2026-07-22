@@ -1,7 +1,6 @@
 package product;
 import (
 	"mains/util"
-	"mains/database"
 	"net/http"
 	
 
@@ -10,6 +9,6 @@ import (
 
 func(h *Handler)GetProducts(w http.ResponseWriter, r *http.Request) {
 
-	users:=database.List();
+	users:=h.productRepo.List();
 	util.SendResponse(w, users, http.StatusOK)
 }

@@ -1,8 +1,8 @@
 package product;
 import (
-	"mains/database"
 	"net/http"
 	"strconv"
+	"mains/util"
 
 )
 
@@ -19,6 +19,7 @@ func(h *Handler)DeleteProduct(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Product ID is required", http.StatusBadRequest)
 		return
 	}
-	database.Delete(productIdInt);
-	http.Error(w, "Product deleted", http.StatusOK)	
+     h.productRepo.Delete(productIdInt);
+
+	util.SendResponse(w, "Product deleted", http.StatusOK)	
 }
