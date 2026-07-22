@@ -1,21 +1,22 @@
-package cmd;
+package cmd
 
 import (
-    "mains/config"
+	"mains/config"
+	"mains/infra/db"
+	"mains/repo"
 	"mains/rest"
 	"mains/rest/handlers/product"
 	"mains/rest/handlers/user"
 	"mains/rest/middlewares"
-	"mains/repo"
-
 )
 
 func Serve() {
 
-	cnf := config.GetConfig()
+	cnf := config.GetConfig();
+	dbConnection:=db.NewConnection(*cnf.Dbconfig);
     middlewares := middleware.NewMiddleware(cnf);
 	
-	productRepo:=repo.NewProductRepo();
+	productRepo:=repo.NewProductRepo(dbConnection);
 	product :=product.NewHandler(middlewares,productRepo);
 
 	userRepo:=repo.NewUserRepo();

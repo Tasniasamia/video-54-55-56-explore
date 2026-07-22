@@ -9,6 +9,10 @@ import (
 
 func(h *Handler)GetProducts(w http.ResponseWriter, r *http.Request) {
 
-	users:=h.productRepo.List();
+	users,err:=h.productRepo.List();
+	if(err != nil){
+			http.Error(w, err.Error(), http.StatusBadRequest)
+
+	}
 	util.SendResponse(w, users, http.StatusOK)
 }
